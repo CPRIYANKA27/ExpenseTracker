@@ -2,6 +2,7 @@ import { useState } from "react";
 import WalletExpenses from "../WalletExpenses/WalletExpenses";
 import ExpenseTable from "../ExpenseTable/ExpenseTable";
 import LinebarChart from "../LinebarChart/LinebarChart";
+import PieChart from "../PieChart/PieChart"; // ✅ Added
 import "./Dashboard.css";
 
 const Dashboard = () => {
@@ -17,13 +18,12 @@ const Dashboard = () => {
       : []
   );
 
-  const handleExpensesListUpdate = (expenses) => {
-    setExpenses(expenses);
+  const handleExpensesListUpdate = (updatedExpenses) => {
+    setExpenses(updatedExpenses);
     const totalBalance =
       localStorage.getItem("totalBalance") - getTotalExpenses();
-
     setWalletBalance(totalBalance);
-    localStorage.setItem("expenses", JSON.stringify(expenses));
+    localStorage.setItem("expenses", JSON.stringify(updatedExpenses));
   };
 
   const getTotalExpenses = () => {
@@ -61,6 +61,7 @@ const Dashboard = () => {
             categories={categories}
           />
           <LinebarChart data={expenses} categories={categories} />
+          <PieChart data={expenses} categories={categories} /> {/* ✅ Added */}
         </div>
       )}
     </div>
