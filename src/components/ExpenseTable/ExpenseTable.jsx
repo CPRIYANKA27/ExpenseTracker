@@ -89,7 +89,7 @@ const ExpenseTable = ({ expenseData, handleExpenseListUpdate, categories }) => {
     setCurrExpense(expense);
   };
 
-  const closeModal = () => {
+  /* const closeModal = () => {
     setIsModalOpen(false);
     setCurrExpense({
       title: "",
@@ -98,11 +98,13 @@ const ExpenseTable = ({ expenseData, handleExpenseListUpdate, categories }) => {
       date: "",
     });
   };
+  */
 
-  const handleEdit = (e) => {
+  /* const handleEdit = (e) => {
     e.preventDefault();
     setIsModalOpen(false);
   };
+  */
 
   const handleDelete = (id) => {
     const updatedExpenses = expenseData.filter((expense) => expense.id !== id);

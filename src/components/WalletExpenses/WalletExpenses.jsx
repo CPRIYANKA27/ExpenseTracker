@@ -140,7 +140,7 @@ const WalletExpenses = ({
           <input
             className="glassmorphismButton"
             name="income"
-            placeholder="Income amount"
+            placeholder="Income Amount"
             type="number"
             value={newIncome}
             onChange={(e) => handleInputChange(e, false)}
