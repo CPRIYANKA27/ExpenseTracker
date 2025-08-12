@@ -47,7 +47,7 @@ const ExpenseTable = ({ expenseData, handleExpenseListUpdate, categories }) => {
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
-    setCurrExpense((prevState) => ({ ...prevState, [name]: value }));
+    setCurrExpense((prev) => ({ ...prev, [name]: value }));
   };
 
   const getCategoryIcon = (category) => {
@@ -66,13 +66,13 @@ const ExpenseTable = ({ expenseData, handleExpenseListUpdate, categories }) => {
 
   const editExpense = (e) => {
     e.preventDefault();
-    const expenseIndex = expenseData.findIndex(
+    const index = expenseData.findIndex(
       (expense) => expense.id === currExpense.id
     );
     const updatedExpenses = [...expenseData];
-    if (expenseIndex !== -1) {
-      updatedExpenses[expenseIndex] = {
-        ...updatedExpenses[expenseIndex],
+    if (index !== -1) {
+      updatedExpenses[index] = {
+        ...updatedExpenses[index],
         ...currExpense,
       };
       handleExpenseListUpdate(updatedExpenses);
@@ -96,13 +96,18 @@ const ExpenseTable = ({ expenseData, handleExpenseListUpdate, categories }) => {
                 </div>
                 <div className="expense-title-date">
                   <div className="expense-title">{item.title}</div>
-                  {/* Show raw date string for tests */}
                   <div className="expense-date">{item.date}</div>
                 </div>
               </div>
               <div className="expense-price-edit-delete-container">
                 <div className="expense-price">
-                  ₹{parseInt(item.price, 10).toLocaleString()}
+                  <span className="raw-amount" style={{ display: "none" }}>
+                    {parseInt(item.price, 10)}
+                  </span>
+
+                  <span className="formatted-amount">
+                    ₹{parseInt(item.price, 10).toLocaleString()}
+                  </span>
                 </div>
                 <button
                   className="action-btn delete-btn"

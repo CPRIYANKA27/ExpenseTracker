@@ -147,7 +147,7 @@ const WalletExpenses = ({
           />
           <div>
             <button className="glassmorphismButton" type="submit">
-              Add Income
+              Add Balance
             </button>
             <button
               className="glassmorphismButton"
