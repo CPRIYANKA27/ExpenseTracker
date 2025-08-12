@@ -6,27 +6,21 @@ import PieChart from "../PieChart/PieChart";
 import "./Dashboard.css";
 
 const Dashboard = () => {
+  // Load stored expenses from localStorage
+  const storedExpenses = localStorage.getItem("expenses");
+  const initialExpenses = storedExpenses ? JSON.parse(storedExpenses) : [];
+
+  // Wallet balance state (defaults to 5000 if not in storage)
   const [walletBalance, setWalletBalance] = useState(
     localStorage.getItem("walletBalance")
       ? JSON.parse(localStorage.getItem("walletBalance"))
       : 5000
   );
 
-  const [expenses, setExpenses] = useState(
-    localStorage.getItem("expenses")?.length > 0
-      ? JSON.parse(localStorage.getItem("expenses"))
-      : []
-  );
+  // Expenses state
+  const [expenses, setExpenses] = useState(initialExpenses);
 
-  const handleExpensesListUpdate = (updatedExpenses) => {
-    setExpenses(updatedExpenses);
-    const totalBalance =
-      Number(localStorage.getItem("totalBalance") || 5000) -
-      getTotalExpenses(updatedExpenses);
-    setWalletBalance(totalBalance);
-    localStorage.setItem("expenses", JSON.stringify(updatedExpenses));
-  };
-
+  // Calculate total expenses
   const getTotalExpenses = (list = expenses) => {
     return list.reduce(
       (total, expense) => total + parseInt(expense.price || 0, 10),
@@ -34,6 +28,17 @@ const Dashboard = () => {
     );
   };
 
+  // Handle expenses list update
+  const handleExpensesListUpdate = (updatedExpenses) => {
+    setExpenses(updatedExpenses);
+    localStorage.setItem("expenses", JSON.stringify(updatedExpenses));
+
+    const totalBalance = 5000 - getTotalExpenses(updatedExpenses);
+    setWalletBalance(totalBalance);
+    localStorage.setItem("walletBalance", JSON.stringify(totalBalance));
+  };
+
+  // Expense categories
   const categories = [
     "Food",
     "Entertainment",
