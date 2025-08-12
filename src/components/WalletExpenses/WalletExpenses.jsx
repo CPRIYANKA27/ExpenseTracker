@@ -127,7 +127,6 @@ const WalletExpenses = ({
           </button>
         </div>
       </div>
-      <PieChart data={expenses} />
 
       <Modal
         isOpen={isIncomeModalOpen}

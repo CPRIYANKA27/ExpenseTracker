@@ -1,29 +1,34 @@
 .dashboard-container {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 20px;
-}
-
-.dashboard-info-container {
   width: 100%;
   display: flex;
-  justify-content: space-between;
-  flex-wrap: wrap;
-  margin: 40px;
+  flex-direction: column;
   gap: 20px;
 }
 
-/* Mobile styles */
-@media (max-width: 768px) {
-  .dashboard-info-container {
-    flex-direction: column;
-    align-items: center;
-    margin: 20px;
-  }
+/* Top section: Wallet + Expenses + Pie Chart in one row */
+.top-section {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 20px;
+  margin: 20px 40px;
+}
 
-  .dashboard-info-container > * {
-    width: 100%;
-    max-width: 350px;
-  }
+.piechart-section {
+  flex: 0 0 250px;
+  background-color: #3a3a3a; /* Matches dark card style */
+  padding: 15px;
+  border-radius: 10px;
+}
+
+/* Bottom section: Recent Transactions + Top Expenses */
+.bottom-section {
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+  margin: 20px 40px;
+}
+
+.bottom-section > * {
+  flex: 1;
 }
