@@ -104,7 +104,6 @@ const ExpenseTable = ({ expenseData, handleExpenseListUpdate, categories }) => {
                   <span className="raw-amount" style={{ display: "none" }}>
                     {parseInt(item.price, 10)}
                   </span>
-
                   <span className="formatted-amount">
                     ₹{parseInt(item.price, 10).toLocaleString()}
                   </span>
