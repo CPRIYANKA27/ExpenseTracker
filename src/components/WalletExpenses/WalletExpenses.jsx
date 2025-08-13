@@ -108,7 +108,7 @@ const WalletExpenses = ({
             <span className="income-amount"> ₹{walletBalance} </span>
           </h2>
           <button
-            className="glassmorphism addincome"
+            className="glassmorphism "
             onClick={() => setIsIncomeModalOpen(true)}
           >
             + Add Income
@@ -120,7 +120,7 @@ const WalletExpenses = ({
             <span className="expense-amount"> ₹{getTotalExpenses()} </span>
           </h2>
           <button
-            className="glassmorphism addexpnse"
+            className="glassmorphism "
             onClick={() => setIsExpenseModalOpen(true)}
           >
             + Add Expense
@@ -140,7 +140,7 @@ const WalletExpenses = ({
           <input
             className="glassmorphismButton"
             name="income"
-            placeholder="Income amount"
+            placeholder="Income Amount"
             type="number"
             value={newIncome}
             onChange={(e) => handleInputChange(e, false)}
