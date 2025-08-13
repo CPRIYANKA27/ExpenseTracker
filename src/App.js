@@ -1,13 +1,13 @@
+import React from "react";
 import Dashboard from "./components/Dashboard/Dashboard";
-import "./App.css";
 
-function App() {
+export default function App() {
   return (
-    <div className="App">
-      <h1>Expense Tracker</h1>
+    <div>
+      <h1 style={{ textAlign: "left", margin: "16px 0", color: "white" }}>
+        Expense Tracker
+      </h1>
       <Dashboard />
     </div>
   );
 }
-
-export default App;

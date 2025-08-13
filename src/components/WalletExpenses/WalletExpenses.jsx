@@ -104,11 +104,11 @@ const WalletExpenses = ({
       <div className="wallet-income-expense-container">
         <div className="wallet-card-container glassmorphism">
           <h2>
-            Wallet Balance:{" "}
+            <span className="walletalance"> Wallet Balance: </span>
             <span className="income-amount"> ₹{walletBalance} </span>
           </h2>
           <button
-            className="glassmorphism"
+            className="glassmorphism addincome"
             onClick={() => setIsIncomeModalOpen(true)}
           >
             + Add Income
@@ -116,17 +116,18 @@ const WalletExpenses = ({
         </div>
         <div className="wallet-card-container glassmorphism">
           <h2>
-            Expenses:{" "}
+            <span className="expense">Expenses: </span>
             <span className="expense-amount"> ₹{getTotalExpenses()} </span>
           </h2>
           <button
-            className="glassmorphism"
+            className="glassmorphism addexpnse"
             onClick={() => setIsExpenseModalOpen(true)}
           >
             + Add Expense
           </button>
         </div>
       </div>
+      <PieChart data={expenses} />
 
       <Modal
         isOpen={isIncomeModalOpen}
@@ -134,12 +135,12 @@ const WalletExpenses = ({
         style={modalStyle}
         contentLabel="Add New Income"
       >
-        <h2 className="modal-header">Add New Income</h2>
+        <h2 className="modal-header">Add Balance</h2>
         <form className="modal-form-income" onSubmit={addIncome}>
           <input
             className="glassmorphismButton"
             name="income"
-            placeholder="Income Amount"
+            placeholder="Income amount"
             type="number"
             value={newIncome}
             onChange={(e) => handleInputChange(e, false)}

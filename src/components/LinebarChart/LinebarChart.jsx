@@ -9,13 +9,12 @@ import {
 import "./LinebarChart.css";
 
 const processData = (data) => {
-  if (!Array.isArray(data) || data.length === 0) return [];
-
   const categoryTotals = data.reduce((acc, item) => {
     const amount = Number(item.price) || 0;
-    if (!acc[item.category]) {
-      acc[item.category] = { category: item.category, total: 0 };
-    }
+    acc[item.category] = acc[item.category] || {
+      category: item.category,
+      total: 0,
+    };
     acc[item.category].total += amount;
     return acc;
   }, {});
@@ -30,34 +29,28 @@ const LinebarChart = ({ data }) => {
 
   return (
     <div className="line-bar-chart">
-      <h2>Top Expenses</h2>
-      {processedData.length === 0 ? (
-        <p className="no-data-text">No data to display</p>
-      ) : (
-        <ResponsiveContainer width="100%" height={400}>
-          <BarChart
-            data={processedData}
-            layout="vertical"
-            margin={{ top: 20, right: 30, left: 20, bottom: 5 }}
-          >
-            <XAxis type="number" hide />
-            <YAxis
-              dataKey="name"
-              type="category"
-              tickLine={false}
-              axisLine={false}
-              width={100}
-            />
-            <Tooltip cursor={{ fill: "transparent" }} />
-            <Bar
-              dataKey="value"
-              barSize={20}
-              radius={[0, 10, 10, 0]}
-              fill="#8884d8"
-            />
-          </BarChart>
-        </ResponsiveContainer>
-      )}
+      <ResponsiveContainer width="100%" height={400}>
+        <BarChart
+          data={processedData}
+          layout="vertical"
+          margin={{ top: 20, right: 30, left: 20, bottom: 5 }}
+        >
+          <XAxis type="number" hide />
+          <YAxis
+            dataKey="name"
+            type="category"
+            tickLine={false}
+            axisLine={false}
+          />
+          <Tooltip cursor={{ fill: "transparent" }} />
+          <Bar
+            dataKey="value"
+            barSize={20}
+            radius={[0, 10, 10, 0]}
+            fill="#8884d8"
+          />
+        </BarChart>
+      </ResponsiveContainer>
     </div>
   );
 };

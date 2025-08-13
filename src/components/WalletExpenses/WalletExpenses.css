@@ -8,10 +8,20 @@
   justify-content: space-between;
   flex-wrap: wrap;
 }
+.walletalance,
+.expense {
+  color: white;
+}
+.addincome {
+  background-color: rgb(67, 236, 67);
+  color: white;
+}
+.addexpnse {
+  background-color: rgb(233, 56, 56);
+  color: white;
+}
 
 .glassmorphism {
-  background: rgba(255, 255, 255, 0.2);
-  /* Adjust the alpha value for opacity */
   border-radius: 10px;
   /* Rounded corners */
   border: 1px solid rgba(255, 255, 255, 0.18);
@@ -62,16 +72,14 @@ select > option {
   margin: 10px auto;
   height: 50px;
   cursor: pointer;
-  position: relative;
-  z-index: 10;
 }
 
 .income-amount {
-  color: rgb(65, 238, 65);
+  color: rgb(69, 227, 69);
 }
 
 .expense-amount {
-  color: rgb(246, 215, 16);
+  color: rgb(239, 153, 55);
 }
 
 .modal-header {
@@ -85,8 +93,4 @@ select > option {
 
 .select-option > option {
   padding: 5px;
-}
-
-.addincome {
-  background-color: green;
 }
