@@ -108,7 +108,7 @@ const WalletExpenses = ({
             <span className="income-amount"> ₹{walletBalance} </span>
           </h2>
           <button
-            className="glassmorphism "
+            className="glassmorphism"
             onClick={() => setIsIncomeModalOpen(true)}
           >
             + Add Income
@@ -120,7 +120,7 @@ const WalletExpenses = ({
             <span className="expense-amount"> ₹{getTotalExpenses()} </span>
           </h2>
           <button
-            className="glassmorphism "
+            className="glassmorphism"
             onClick={() => setIsExpenseModalOpen(true)}
           >
             + Add Expense
