@@ -1,96 +1,48 @@
 .wallet-container {
-  height: fit-content;
-  margin: 40px;
-  padding: 20px;
-  /* Adjust as needed */
   display: flex;
-  align-items: center;
-  justify-content: space-between;
-  flex-wrap: wrap;
+  align-items: flex-start;
+  justify-content: center;
+  gap: 40px; /* Space between cards and the chart */
 }
-.walletalance,
-.expense {
-  color: white;
-}
-.addincome {
-  background-color: rgb(67, 236, 67);
-  color: white;
-}
-.addexpnse {
-  background-color: rgb(233, 56, 56);
-  color: white;
-}
-
-.glassmorphism {
-  border-radius: 10px;
-  /* Rounded corners */
-  border: 1px solid rgba(255, 255, 255, 0.18);
-  /* Subtle white border */
-  box-shadow: 0 8px 12px rgba(0, 0, 0, 0.1);
-  /* Soft shadow for depth */
-  backdrop-filter: blur(10px);
-  /* Blur the background behind the element */
-}
-
-.glassmorphismButton,
-input,
-select,
-select > option {
-  background: rgba(255, 255, 255, 0.2);
-  /* Adjust the alpha value for opacity */
-  border-radius: 10px;
-  /* Rounded corners */
-  border: 1px solid rgba(255, 255, 255, 0.18);
-  /* Subtle white border */
-  box-shadow: 0 8px 12px rgba(0, 0, 0, 0.1);
-  /* Soft shadow for depth */
-  backdrop-filter: blur(10px);
-  /* Blur the background behind the element */
-  margin: 10px;
-  padding: 15px;
-  font-weight: bold;
-}
-
-.wallet-card-container {
-  margin: 40px;
-  padding: 20px;
-  min-width: 300px;
-  border-radius: 12px;
+.wallet-income-expense-container {
   display: flex;
   flex-direction: column;
-  align-items: space-between;
-  justify-content: space-between;
+  gap: 30px;
+  min-width: 320px;
+  flex: 0 0 350px; /* Fixed width to prevent shrinking */
 }
 
-.wallet-income-expense-container {
-  width: 50%;
+/* Add a class or style for your chart container */
+.chart-container {
+  min-width: 380px;
+  flex: 0 0 400px; /* Reserve space for the pie chart */
+  z-index: 1;
+}
+
+/* Cards */
+.wallet-card-container {
+  margin: 0; /* remove conflicting margins */
+  padding: 20px;
+  min-width: 280px;
+  border-radius: 12px;
   display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  background-color: rgba(255, 255, 255, 0.1); /* for visibility */
+  z-index: 2; /* place above chart */
 }
 
+/* Buttons styling */
 .wallet-card-container > button {
-  width: 60%;
+  width: 80%;
   margin: 10px auto;
   height: 50px;
   cursor: pointer;
 }
 
-.income-amount {
-  color: rgb(69, 227, 69);
-}
-
-.expense-amount {
-  color: rgb(239, 153, 55);
-}
-
-.modal-header {
-  margin: 0 auto;
-}
-
-.modal-form-income {
-  display: flex;
-  padding: 10px;
-}
-
-.select-option > option {
-  padding: 5px;
+/* Chart SVG */
+.recharts-wrapper {
+  width: 100% !important;
+  height: auto !important;
+  display: block;
 }

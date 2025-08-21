@@ -93,8 +93,8 @@ const WalletExpenses = ({
       maxWidth: "500px",
       background: "rgba(255, 255, 255, 0.6)",
       borderRadius: "10px",
-      border: "border: 1px solid rgba(255, 255, 255, 0.18)",
-      boxShadow: " 0 8px 12px rgba(0, 0, 0, 0.1)",
+      border: "1px solid rgba(255, 255, 255, 0.18)",
+      boxShadow: "0 8px 12px rgba(0, 0, 0, 0.1)",
       backdropFilter: "blur(10px)",
     },
   };
@@ -127,7 +127,11 @@ const WalletExpenses = ({
           </button>
         </div>
       </div>
-      <PieChart data={expenses} />
+
+      {/* Chart Container Added */}
+      <div className="chart-container">
+        <PieChart data={expenses} />
+      </div>
 
       <Modal
         isOpen={isIncomeModalOpen}

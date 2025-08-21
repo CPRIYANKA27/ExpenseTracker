@@ -29,18 +29,19 @@ const modalStyle = {
     left: "50%",
     right: "auto",
     bottom: "auto",
+    marginRight: "-50%",
     transform: "translate(-50%, -50%)",
-    width: "90%",
+    width: "80%",
     maxWidth: "500px",
-    borderRadius: "12px",
+    background: "rgba(255, 255, 255, 0.6)",
+    borderRadius: "10px",
+    border: "1px solid rgba(255, 255, 255, 0.18)",
+    boxShadow: "0 8px 12px rgba(0, 0, 0, 0.1)",
+    backdropFilter: "blur(10px)",
   },
 };
 
-export default function ExpenseTable({
-  expenseData,
-  handleExpenseListUpdate,
-  categories,
-}) {
+const ExpenseTable = ({ expenseData, handleExpenseListUpdate, categories }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [currExpense, setCurrExpense] = useState({});
 
@@ -49,54 +50,57 @@ export default function ExpenseTable({
     setCurrExpense((prev) => ({ ...prev, [name]: value }));
   };
 
+  const getCategoryIcon = (category) => {
+    return icons[category] || <FaEllipsisH />;
+  };
+
   const openModal = (expense) => {
     setIsModalOpen(true);
     setCurrExpense(expense);
   };
 
   const handleDelete = (id) => {
-    const updated = expenseData.filter((e) => e.id !== id);
-    handleExpenseListUpdate(updated);
+    const updatedExpenses = expenseData.filter((expense) => expense.id !== id);
+    handleExpenseListUpdate(updatedExpenses);
   };
 
   const editExpense = (e) => {
     e.preventDefault();
-    const idx = expenseData.findIndex((it) => it.id === currExpense.id);
-    if (idx === -1) return;
-    const updated = [...expenseData];
-    updated[idx] = {
-      ...updated[idx],
-      ...currExpense,
-      price: Number(currExpense.price),
-    };
-    handleExpenseListUpdate(updated);
-    setIsModalOpen(false);
+    const index = expenseData.findIndex(
+      (expense) => expense.id === currExpense.id
+    );
+    const updatedExpenses = [...expenseData];
+    if (index !== -1) {
+      updatedExpenses[index] = {
+        ...updatedExpenses[index],
+        ...currExpense,
+      };
+      handleExpenseListUpdate(updatedExpenses);
+      setIsModalOpen(false);
+    }
   };
-
-  const getIcon = (cat) => icons[cat] || <FaEllipsisH />;
 
   return (
     <>
       <div className="expense-container">
         <h2>Recent Transactions</h2>
+        <br />
         <div className="expense-table-container">
           {expenseData.map((item) => (
             <div className="expense-row" key={item.id}>
               <div className="expense-row-icon-title">
                 <div className="expense-icon">
-                  {React.cloneElement(getIcon(item.category), {
+                  {React.cloneElement(getCategoryIcon(item.category), {
                     className: "expense-category-icon",
                   })}
                 </div>
                 <div className="expense-title-date">
                   <div className="expense-title">{item.title}</div>
-                  {/* Keep raw date for tests */}
                   <div className="expense-date">{item.date}</div>
                 </div>
               </div>
               <div className="expense-price-edit-delete-container">
                 <div className="expense-price">
-                  {/* raw amount for tests (hidden visually) */}
                   <span className="raw-amount" style={{ display: "none" }}>
                     {parseInt(item.price, 10)}
                   </span>
@@ -122,10 +126,12 @@ export default function ExpenseTable({
         </div>
       </div>
 
+      {/* Edit Expense Modal */}
       <Modal
         isOpen={isModalOpen}
         onRequestClose={() => setIsModalOpen(false)}
         style={modalStyle}
+        contentLabel="Edit Expense"
       >
         <h2 className="modal-header">Edit Expense</h2>
         <form className="modal-form-expense" onSubmit={editExpense}>
@@ -152,20 +158,21 @@ export default function ExpenseTable({
             required
           >
             <option value="">Select Category</option>
-            {categories.map((c) => (
-              <option key={c} value={c}>
-                {c}
+            {categories.map((category, index) => (
+              <option key={index} value={category}>
+                {category}
               </option>
             ))}
           </select>
           <input
             name="date"
+            placeholder="Date"
             type="date"
             value={currExpense.date || ""}
             onChange={handleInputChange}
             required
           />
-          <div className="modal-actions">
+          <div>
             <button className="glassmorphismButton" type="submit">
               Save
             </button>
@@ -181,4 +188,6 @@ export default function ExpenseTable({
       </Modal>
     </>
   );
-}
+};
+
+export default ExpenseTable;
